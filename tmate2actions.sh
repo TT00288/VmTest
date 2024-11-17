@@ -71,7 +71,7 @@ echo "To connect to this session copy and paste the following into a terminal or
 echo -e "CLI: ${Green_font_prefix}${TMATE_SSH}${Font_color_suffix}"
 echo -e "URL: ${Green_font_prefix}${TMATE_WEB}${Font_color_suffix}"
 echo -e "TIPS: Run 'touch ${CONTINUE_FILE}' to continue to the next step."
-echo "-----------------------------------------------------------------------------------"
+echo "---------还要在等一会---------"
 
 while ((${PRT_COUNT:=1} <= ${PRT_TOTAL:=10})); do
     SECONDS_LEFT=${PRT_INTERVAL_SEC:=10}
