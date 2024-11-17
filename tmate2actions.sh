@@ -85,8 +85,6 @@ done
 
 echo "--------------------------------服务准备完毕----------------------------------------"
 
-touch /tmp/continue
-
 while [[ -S ${TMATE_SOCK} ]]; do
     sleep 1
     if [[ -e ${CONTINUE_FILE} ]]; then
