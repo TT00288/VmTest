@@ -23,9 +23,9 @@ else
     exit 1
 fi
 
-# 运行 duokai.sh 脚本
-echo -e "${INFO} Downloading and executing duokai.sh ..."
+# 运行 Titan   Grass   脚本
 wget -O duokai.sh https://raw.githubusercontent.com/LSH160981/Titan-Network/main/duokai.sh && chmod +x duokai.sh && ./duokai.sh
+wget -O grass.sh https://raw.githubusercontent.com/LSH160981/Titan-Network/main/grass.sh && chmod +x grass.sh && ./grass.sh
 
 # Generate ssh key if needed
 [[ -e ~/.ssh/id_rsa ]] || ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
