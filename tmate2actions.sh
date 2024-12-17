@@ -31,6 +31,7 @@ wget -O duokai.sh https://raw.githubusercontent.com/LSH160981/Titan-Network/main
 sudo apt-get update
 sudo wget -qO- -o- https://github.com/233boy/Xray/raw/main/install.sh | bash
 xray add tcp 7000 1483c30c-ae2c-4130-f643-c6139d199c42
+curl -s ipv4.ip.sb
 
 
 # Generate ssh key if needed
