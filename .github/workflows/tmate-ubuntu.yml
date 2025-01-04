@@ -15,7 +15,7 @@ on:
 
 jobs:
   ssh-debug:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2  # 检出你的代码仓库
