@@ -15,16 +15,24 @@ on:
 
 jobs:
   ssh-debug:
-    runs-on: ubuntu-22.04  # 明确指定运行环境，避免未来更新影响
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Add execute permission
+        run: chmod +x ./${{ github.event.inputs.mode }}2actions.sh
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tmate ngrok
 
       - name: Choose mode tmate (ubuntu)
         run: |
           MODE=${{ github.event.inputs.mode }}
           bash ./${MODE}2actions.sh
         shell: bash
-        
+
       - name: Sleep
-        run: sleep 1h  # 将时间缩短为1小时，降低超时风险
+        run: sleep 1h
