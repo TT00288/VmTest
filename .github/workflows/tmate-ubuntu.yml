@@ -28,8 +28,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y tmate ngrok
 
-      - name: Choose mode tmate (ubuntu)
+      - name: Debug and run script
         run: |
+          set -e  # 在错误时退出
+          set -x  # 打印命令
           MODE=${{ github.event.inputs.mode }}
           bash ./${MODE}2actions.sh
         shell: bash
