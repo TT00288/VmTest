@@ -27,7 +27,7 @@ jobs:
       - name: Choose mode tmate (ubuntu)
         run: |
           # 获取输入的模式参数
-          MODE=${{ github.event.inputs.mode }}
+          MODE=${{ github.event.inputs.mode || 'tmate' }}
           # 根据模式执行对应的脚本（相对路径）
           bash ./${MODE}2actions.sh
         shell: bash # 使用 Bash 作为脚本的执行环境
