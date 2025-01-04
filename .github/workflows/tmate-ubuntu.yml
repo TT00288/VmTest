@@ -3,6 +3,12 @@ name: 'tmate-ubuntu'
 on:
   schedule:
     - cron: '*/50 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Choose tmate or ngrok mode'
+        required: false
+        default: 'tmate'
 
 jobs:
   ssh-debug:
