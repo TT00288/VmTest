@@ -20,9 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Debug input
+        run: |
+          echo "Input mode: ${{ github.event.inputs.mode }}"
+
       - name: Verify script exists
         run: |
-          MODE=${{ github.event.inputs.mode }}
+          MODE="${{ github.event.inputs.mode }}"
+          if [ -z "$MODE" ]; then
+            echo "Error: MODE is not set."
+            exit 1
+          fi
           SCRIPT_PATH="./${MODE}2actions.sh"
           if [ ! -f "$SCRIPT_PATH" ]; then
             echo "Error: $SCRIPT_PATH does not exist."
@@ -31,7 +39,7 @@ jobs:
 
       - name: Add execute permission
         run: |
-          MODE=${{ github.event.inputs.mode }}
+          MODE="${{ github.event.inputs.mode }}"
           chmod +x ./${MODE}2actions.sh
 
       - name: Install dependencies
@@ -43,7 +51,7 @@ jobs:
         run: |
           set -e
           set -x
-          MODE=${{ github.event.inputs.mode }}
+          MODE="${{ github.event.inputs.mode }}"
           bash ./${MODE}2actions.sh
         shell: bash
 
