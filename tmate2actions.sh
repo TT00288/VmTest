@@ -89,10 +89,28 @@ done
 
 echo "--------------------------------服务准备完毕----------------------------------------"
 
-while [[ -S ${TMATE_SOCK} ]]; do
-    sleep 1
-    if [[ -e ${CONTINUE_FILE} ]]; then
-        echo -e "${INFO} Continue to the next step."
-        exit 0
+# 无限循环，永远不会退出【出品GPT，源代码在MD】
+while true; do
+    # 检查 tmate 套接字是否仍然存在
+    if [[ -S ${TMATE_SOCK} ]]; then
+        echo -e "${INFO} tmate session is active."
+    else
+        echo -e "${ERROR} tmate session has been closed or socket is missing!"
     fi
+
+    # 检查是否存在 CONTINUE_FILE
+    if [[ -e ${CONTINUE_FILE} ]]; then
+        echo -e "${INFO} Detected continue file. Processing..."
+        # 执行一些动作，比如标记日志
+        date +"%Y-%m-%d %H:%M:%S - Continue file detected." >> /tmp/loop_activity.log
+    else
+        echo -e "${INFO} Continue file not found. Waiting..."
+    fi
+
+    # 记录当前时间到日志，表明循环仍在运行
+    echo "Heartbeat: $(date)" >> /tmp/loop_activity.log
+
+    # 每 10 秒打印一次消息
+    sleep 10
 done
+
