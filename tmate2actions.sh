@@ -93,18 +93,17 @@ echo "--------------------------------服务准备完毕------------------------
 while true; do
     # 检查 tmate 套接字是否仍然存在
     if [[ -S ${TMATE_SOCK} ]]; then
-        echo -e "${INFO} tmate session is active."
+        echo " session is active... " >> /tmp/01.log
     else
         echo -e "${ERROR} tmate session has been closed or socket is missing!"
     fi
 
     # 检查是否存在 CONTINUE_FILE
     if [[ -e ${CONTINUE_FILE} ]]; then
-        echo -e "${INFO} Detected continue file. Processing..."
         # 执行一些动作，比如标记日志
         date +"%Y-%m-%d %H:%M:%S - Continue file detected." >> /tmp/loop_activity.log
     else
-        echo -e "${INFO} Continue file not found. Waiting..."
+        echo "${INFO} Continue file not found. Waiting..." >> /tmp/Waiting.log
     fi
 
     # 记录当前时间到日志，表明循环仍在运行
